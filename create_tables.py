@@ -3,7 +3,6 @@
 import pyodbc
 
 #Create a connection with MS SQL SERVER 
-
 conn = pyodbc.connect('Driver={SQL Server};'
                       'Server=DESKTOP-DC1BM20;'
                       'Database=master;'
@@ -15,5 +14,9 @@ cursor.execute('SELECT * FROM student')
 for row in cursor:
     print(row)
 
-# def checkIfDBExists(dbName)
+
+def checkIfDBExists(dbName, cursor):
+    cursor.execute("If EXISTS(select * from master.sys.tables where name = 'student') BEGIN PRINT 'Table Exists' END")
+    
+
 
